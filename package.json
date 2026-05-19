@@ -1,7 +1,7 @@
 {
   "name": "product-inventory-api",
   "version": "1.0.0",
-  "description": "Product Inventory API (SBA12)",
+  "description": "Product Inventory API (SBA13)",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
