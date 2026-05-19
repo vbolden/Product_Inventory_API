@@ -14,6 +14,16 @@ productRouter.post("/", async (req, res) => {
 });
 
 // READ SINGLE PRODUCT
+productRouter.get("/:id", async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+
+        res.json(product)
+
+    } catch (error) {
+        res.status(404).json({ error: error.message });
+    }
+})
 
 // UPDATE
 
