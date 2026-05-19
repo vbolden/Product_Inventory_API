@@ -53,3 +53,18 @@ productRouter.delete("/:id", async (req, res) => {
 });
 
 // READ ALL 
+productRouter.get("/", async (req, res) => {
+    try {
+        const {
+            category,
+            minPrice,
+            maxPrice,
+            sortBy,
+            page = 1,
+            limit = 10,
+        } = req.query;
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+})
