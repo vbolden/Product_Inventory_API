@@ -34,7 +34,7 @@ productRouter.put("/:id", async (req, res) => {
             { new: true }
         );
 
-        res.json(updatedProduct)
+        res.json(updatedProduct);
 
     } catch (error) {
         res.status(404).json({ error: error.message });
@@ -42,5 +42,14 @@ productRouter.put("/:id", async (req, res) => {
 });
 
 // DELETE
+productRouter.delete("/:id", async (req, res) => {
+    try {
+        const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+
+        res.json({ message: "Product deleted successfully" });
+    } catch (error) {
+        res.status(404).json({ error: error.message });
+    }
+});
 
 // READ ALL 
