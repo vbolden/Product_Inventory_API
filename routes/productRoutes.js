@@ -95,8 +95,16 @@ productRouter.get("/", async (req, res) => {
         }
 
         // PAGINATION
+        const skip = (Number(page) - 1) * Number(limit);
+
+        const products = await Product.find(filter)
+            .sort(sort)
+            .skip(skip)
+            .limit(Number(limit));
+
+        res.json(products)
 
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(500).json({ error: error.message });
     }
 });
