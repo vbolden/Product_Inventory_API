@@ -64,7 +64,39 @@ productRouter.get("/", async (req, res) => {
             limit = 10,
         } = req.query;
 
+        let filter = {};
+
+        // CATEGORY FILTER
+        if (category) {
+            filter.category = category;
+        }
+
+        // PRICE FILTERS
+        if (minPrice || maxPrice) {
+
+            filter.price = {};
+
+            if (minPrice) {
+                filter.price$gte = Number(minPrice);
+            }
+
+            if (maxPrice) {
+                filter.price$lte = Number(maxPrice);
+            }
+        }
+
+        // SORTING
+        let sort = {};
+
+        if (sortBy === "price_asc") {
+            sort.price = 1;
+        } else if (sortBy === "price_desc") {
+            sort.price = -1;
+        }
+
+        // PAGINATION
+
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
-})
+});
